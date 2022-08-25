@@ -4,13 +4,12 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.commit
 import com.jaehyeon.intinbletestapp.R
 import com.jaehyeon.intinbletestapp.ui.*
-import com.jaehyeon.intinbletestapp.util.fragment.FragmentType
 import com.jaehyeon.intinbletestapp.util.fragment.MainFragmentType
 
 /**
  * Created by Jaehyeon on 2022/08/26.
  */
-class FragmentNavigatorImpl(private val activity: FragmentActivity): FragmentNavigator {
+class FragmentNavigatorImpl(private val activity: FragmentActivity) : FragmentNavigator {
 
     private val checkModuleFragment = CheckModuleFragment.newInstance(null)
     private val choiceDeviceFragment = ChoiceDeviceFragment.newInstance(null)
@@ -19,7 +18,7 @@ class FragmentNavigatorImpl(private val activity: FragmentActivity): FragmentNav
     private val scanFragment = ScanFragment.newInstance(null)
     private val standbyModuleFragment = StandbyModuleFragment.newInstance(null)
 
-    override fun navigateTo(screen: FragmentType) {
+    override fun navigateTo(screen: MainFragmentType) {
         replaceFragment(screen)
     }
 
@@ -41,10 +40,11 @@ class FragmentNavigatorImpl(private val activity: FragmentActivity): FragmentNav
         }
     }
 
-    private fun replaceFragment(screen: FragmentType) {
+    private fun replaceFragment(screen: MainFragmentType) {
+
         activity.supportFragmentManager.commit {
-            when(screen) {
-                is MainFragmentType.ScanFragmentType -> {
+            when (screen) {
+                MainFragmentType.Scan -> {
                     show(scanFragment)
                     hide(checkModuleFragment)
                     hide(choiceDeviceFragment)
@@ -52,7 +52,7 @@ class FragmentNavigatorImpl(private val activity: FragmentActivity): FragmentNav
                     hide(resultFragment)
                     hide(standbyModuleFragment)
                 }
-                is MainFragmentType.CheckModuleFragmentType -> {
+                MainFragmentType.CheckModule -> {
                     show(checkModuleFragment)
                     hide(scanFragment)
                     hide(choiceDeviceFragment)
@@ -60,7 +60,7 @@ class FragmentNavigatorImpl(private val activity: FragmentActivity): FragmentNav
                     hide(resultFragment)
                     hide(standbyModuleFragment)
                 }
-                is MainFragmentType.ChoiceDeviceFragmentType -> {
+                MainFragmentType.ChoiceDevice -> {
                     show(choiceDeviceFragment)
                     hide(checkModuleFragment)
                     hide(scanFragment)
@@ -68,7 +68,7 @@ class FragmentNavigatorImpl(private val activity: FragmentActivity): FragmentNav
                     hide(resultFragment)
                     hide(standbyModuleFragment)
                 }
-                is MainFragmentType.ChoiceModuleFragmentType -> {
+                MainFragmentType.ChoiceModule -> {
                     show(choiceModuleFragment)
                     hide(checkModuleFragment)
                     hide(choiceDeviceFragment)
@@ -76,7 +76,7 @@ class FragmentNavigatorImpl(private val activity: FragmentActivity): FragmentNav
                     hide(resultFragment)
                     hide(standbyModuleFragment)
                 }
-                is MainFragmentType.ResultFragmentType -> {
+                MainFragmentType.Result -> {
                     show(resultFragment)
                     hide(checkModuleFragment)
                     hide(choiceDeviceFragment)
@@ -84,13 +84,14 @@ class FragmentNavigatorImpl(private val activity: FragmentActivity): FragmentNav
                     hide(scanFragment)
                     hide(standbyModuleFragment)
                 }
-                is MainFragmentType.StandbyModuleFragmentType -> {
+                MainFragmentType.StandbyModule -> {
                     show(standbyModuleFragment)
                     hide(checkModuleFragment)
                     hide(choiceDeviceFragment)
                     hide(choiceModuleFragment)
                     hide(resultFragment)
                     hide(scanFragment)
+
                 }
             }
         }
