@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".RegisterChekActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:id="@+id/my_toolbar_1">
+        <ImageView
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/a1814"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/my_toolbar"
+            />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/regchk_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_toolbar_1"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="70dp"
+        android:text="회원가입 (약관동의)"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+
+    <RelativeLayout
+        android:id="@+id/text_service"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/regchk_title"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/text_line_focus"
+        android:layout_marginTop="90dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_service2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:text="서비스 이용약관"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/text_service3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_service2"
+            >
+
+            <TextView
+                android:id="@+id/text_l_service2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="#000000"
+                android:background="@drawable/text_line2"
+                android:text="\n 환영합니다!\n 오뷰서비스를 이용해 주셔서 감사합니다!\n 오뷰는 다양한 인터넷과 모바일 서비스\n (Application)를 여러분이 가장 편안하고\n 친근하게 이용할 수 있는 방법으로 제공하고\n 있습니다.\n"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_service4"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/text_l_service2"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="동의합니다"
+                android:textColor="#0099FF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+            <CheckBox
+                android:id="@+id/service_chek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_l_service2"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/text_service4"
+                android:button="@drawable/mychekbox"
+                android:scaleX="0.6"
+                android:scaleY="0.6" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/text_sujib"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_service"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/text_line_focus"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_sujib2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="개인정보 수집 및 이용약관"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/text_sujib3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_sujib2">
+
+            <TextView
+                android:id="@+id/text_l_sujib2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/text_line2"
+                android:textColor="#000000"
+                android:text="\n 환영합니다!\n 오뷰서비스를 이용해 주셔서 감사합니다!\n 오뷰는 다양한 인터넷과 모바일 서비스\n (Application)를 여러분이 가장 편안하고\n 친근하게 이용할 수 있는 방법으로 제공하고\n 있습니다.\n"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_sujib4"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/text_l_sujib2"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="동의합니다"
+                android:textColor="#0099FF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+            <CheckBox
+                android:id="@+id/sujib_chek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_l_sujib2"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/text_sujib4"
+                android:button="@drawable/mychekbox"
+                android:scaleX="0.6"
+                android:scaleY="0.6" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/next_regbtn"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/text_sujib"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:width="300dp"
+        android:background="@drawable/bt_corner"
+        android:text="다음"
+        android:textColor="#FFFFFF"
+        android:textSize="14dp"
+        android:textStyle="bold"
+
+        />
+
+</RelativeLayout>
