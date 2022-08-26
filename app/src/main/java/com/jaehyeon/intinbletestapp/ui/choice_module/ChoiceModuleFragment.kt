@@ -1,4 +1,4 @@
-package com.jaehyeon.intinbletestapp.ui
+package com.jaehyeon.intinbletestapp.ui.choice_module
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +10,14 @@ import androidx.fragment.app.activityViewModels
 import com.jaehyeon.intinbletestapp.MainState
 import com.jaehyeon.intinbletestapp.MainViewModel
 import com.jaehyeon.intinbletestapp.R
-import com.jaehyeon.intinbletestapp.databinding.FragmentCheckModuleBinding
-import com.jaehyeon.intinbletestapp.databinding.FragmentChoiceDeviceBinding
+import com.jaehyeon.intinbletestapp.databinding.FragmentChoiceModuleBinding
 
-class ChoiceDeviceFragment: Fragment() {
+/**
+ * Created by Jaehyeon on 2022/08/26.
+ */
+class ChoiceModuleFragment: Fragment() {
 
-    private lateinit var binding: FragmentChoiceDeviceBinding
+    private lateinit var binding: FragmentChoiceModuleBinding
     private val activityViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -23,23 +25,22 @@ class ChoiceDeviceFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_choice_device, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_choice_module, container, false)
 
-        binding.airCare.setOnClickListener {
-            activityViewModel.runState(MainState.ChoiceModule)
+        binding.lightInresultView5.setOnClickListener {
+            activityViewModel.runState(MainState.CheckModule)
         }
 
         return binding.root
     }
 
     companion object {
-        fun newInstance(bundle: Bundle?): ChoiceDeviceFragment {
-            val fragment = ChoiceDeviceFragment()
+        fun newInstance(bundle: Bundle?): ChoiceModuleFragment {
+            val fragment = ChoiceModuleFragment()
             bundle?.let {
                 fragment.arguments = it
             }
             return fragment
         }
     }
-
 }

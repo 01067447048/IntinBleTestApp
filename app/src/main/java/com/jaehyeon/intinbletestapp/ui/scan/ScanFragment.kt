@@ -1,4 +1,4 @@
-package com.jaehyeon.intinbletestapp.ui
+package com.jaehyeon.intinbletestapp.ui.scan
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,17 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.jaehyeon.intinbletestapp.MainState
 import com.jaehyeon.intinbletestapp.MainViewModel
 import com.jaehyeon.intinbletestapp.R
-import com.jaehyeon.intinbletestapp.databinding.FragmentCheckModuleBinding
+import com.jaehyeon.intinbletestapp.databinding.FragmentScanBinding
 
-/**
- * Created by Jaehyeon on 2022/08/26.
- */
-class CheckModuleFragment: Fragment() {
+class ScanFragment: Fragment() {
 
-    private lateinit var binding: FragmentCheckModuleBinding
+    private lateinit var binding: FragmentScanBinding
     private val activityViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -25,21 +21,18 @@ class CheckModuleFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_check_module, container, false)
-
-        binding.test.setOnClickListener {
-            activityViewModel.runState(MainState.ChoiceDevice)
-        }
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_scan, container, false)
         return binding.root
     }
 
     companion object {
-        fun newInstance(bundle: Bundle?): CheckModuleFragment {
-            val fragment = CheckModuleFragment()
+        fun newInstance(bundle: Bundle?): ScanFragment {
+            val fragment = ScanFragment()
             bundle?.let {
                 fragment.arguments = it
             }
             return fragment
         }
     }
+
 }

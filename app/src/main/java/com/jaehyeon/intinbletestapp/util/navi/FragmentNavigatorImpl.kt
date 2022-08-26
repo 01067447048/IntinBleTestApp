@@ -3,7 +3,12 @@ package com.jaehyeon.intinbletestapp.util.navi
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.commit
 import com.jaehyeon.intinbletestapp.R
-import com.jaehyeon.intinbletestapp.ui.*
+import com.jaehyeon.intinbletestapp.ui.check_module.CheckModuleFragment
+import com.jaehyeon.intinbletestapp.ui.choice_device.ChoiceDeviceFragment
+import com.jaehyeon.intinbletestapp.ui.choice_module.ChoiceModuleFragment
+import com.jaehyeon.intinbletestapp.ui.result.ResultFragment
+import com.jaehyeon.intinbletestapp.ui.scan.ScanFragment
+import com.jaehyeon.intinbletestapp.ui.standby_module.StandbyModuleFragment
 import com.jaehyeon.intinbletestapp.util.fragment.MainFragmentType
 
 /**

@@ -42,29 +42,29 @@
             style="?android:attr/borderlessButtonStyle"
             />
     </RelativeLayout>
+
     <TextView
         android:id="@+id/set_title"
-        android:text="이곳은 넘어온 타이틀 입니다."
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/my_toolbar_2"
-        android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="80dp"
+        android:text="이곳은 넘어온 타이틀 입니다."
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/time_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:text="00:00.00"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:textStyle="bold"
         android:layout_centerInParent="true"
-        />
+        android:gravity="center"
+        android:text="00:00.00"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:textStyle="bold" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,16 +91,15 @@
         />
 
     <Button
+        android:id="@+id/count_start_btn"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:onClick="Start"
         android:background="@mipmap/a2404"
-        android:id="@+id/count_start_btn"
-        />
+        android:onClick="Start" />
     <Button
         style="?android:attr/borderlessButtonStyle"
         android:id="@+id/wanryo_btn"

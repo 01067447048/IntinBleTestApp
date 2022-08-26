@@ -1,4 +1,4 @@
-package com.jaehyeon.intinbletestapp.ui
+package com.jaehyeon.intinbletestapp.ui.result
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

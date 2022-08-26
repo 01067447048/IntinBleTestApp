@@ -4,7 +4,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/result_textview"
@@ -30,6 +31,8 @@
             android:background="@drawable/view_top_line"
             android:orientation="vertical"
             android:visibility="visible"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24sp"
             android:layout_marginTop="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -8,4 +8,22 @@
     <color name="wrongLine">#E91E65</color>
     <color name="nomalLine">#000000</color>
     <color name="btn_nomal">#CCFFFF</color>
+
+    <color name="blue">#0544E8</color>
+    <color name="carolina_blue">#98B4ED</color>
+    <color name="navy_blue">#001341</color>
+
+    <color name="midnight">#030D21</color>
+    <color name="grayscale_02">#424B5D</color>
+    <color name="battleship_grey">#656E81</color>
+    <color name="grayscale_04">#8A92A1</color>
+    <color name="grayscale_05">#B0B6C2</color>
+    <color name="light_periwinkle">#DADEE6</color>
+    <color name="very_light_blue">#E6EAF2</color>
+    <color name="grayscale_08">#F0F2F5</color>
+    <color name="grayscale_09">#F5F7FA</color>
+    <color name="grayscale_10">#c4c4c4</color>
+
+    <color name="azure">#079BFF</color>
+    <color name="white">#FFFFFF</color>
 </resources>
