@@ -2,6 +2,12 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="vm"
+            type="com.jaehyeon.intinbletestapp.ui.choice_module.ChoiceModuleViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,6 +51,7 @@
                 android:gravity="center_vertical"
                 android:paddingHorizontal="10dp"
                 android:text="LED Therapy (광치료)"
+                android:onClick="@{() -> vm.onActionLED()}"
                 android:textColor="#000000"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -56,6 +63,7 @@
                 android:gravity="center_vertical"
                 android:paddingHorizontal="10dp"
                 android:text="Nebulizer Therapy (흡입치료)"
+                android:onClick="@{() -> vm.onActionNeb()}"
                 android:textColor="#000000"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -67,6 +75,7 @@
                 android:gravity="center_vertical"
                 android:paddingHorizontal="10dp"
                 android:text="Suction Therapy (흡인치료)"
+                android:onClick="@{() -> vm.onActionSuction()}"
                 android:textColor="#000000"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -78,6 +87,7 @@
                 android:gravity="center_vertical"
                 android:paddingHorizontal="10dp"
                 android:text="Spray Therapy (분무치료)"
+                android:onClick="@{() -> vm.onActionSpray()}"
                 android:textColor="#000000"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -89,6 +99,7 @@
                 android:gravity="center_vertical"
                 android:paddingHorizontal="10dp"
                 android:text="Spirometry Therapy  (호흡 훈련)"
+                android:onClick="@{() -> vm.onActionSpirometry()}"
                 android:textColor="#000000"
                 android:textSize="12sp"
                 android:textStyle="bold" />

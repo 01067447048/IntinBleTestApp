@@ -10,10 +10,12 @@ import androidx.fragment.app.activityViewModels
 import com.jaehyeon.intinbletestapp.MainViewModel
 import com.jaehyeon.intinbletestapp.R
 import com.jaehyeon.intinbletestapp.databinding.FragmentStandbyModuleBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Created by Jaehyeon on 2022/08/26.
  */
+@AndroidEntryPoint
 class StandbyModuleFragment: Fragment() {
 
     private lateinit var binding: FragmentStandbyModuleBinding

@@ -1,24 +1,41 @@
 package com.jaehyeon.intinbletestapp
 
+import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.jaehyeon.intinbletestapp.databinding.ActivityMainBinding
 import com.jaehyeon.intinbletestapp.util.event.EventObserver
 import com.jaehyeon.intinbletestapp.util.fragment.MainFragmentType
 import com.jaehyeon.intinbletestapp.util.navi.FragmentNavigatorImpl
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
     private val navi = FragmentNavigatorImpl(this)
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        navi.init()
+        permissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) {
+            navi.init()
+        }
+        permissionLauncher.launch(arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT
+        ))
+
     }
 
     override fun onStart() {
@@ -31,8 +48,15 @@ class MainActivity : AppCompatActivity() {
                 MainState.Result -> navi.navigateTo(MainFragmentType.Result)
                 MainState.Scan -> navi.navigateTo(MainFragmentType.Scan)
                 MainState.StandbyModule -> navi.navigateTo(MainFragmentType.StandbyModule)
+                is MainState.BackState -> {
+
+                }
             }
         })
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 
 }

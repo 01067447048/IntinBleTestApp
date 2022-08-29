@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="vm"
+            type="com.jaehyeon.intinbletestapp.ui.choice_device.ChoiceDeviceViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,6 +58,7 @@
                 android:paddingStart="20dp"
                 android:drawablePadding="15dp"
                 android:text="AIR MONITER"
+                android:onClick="@{() -> vm.onActionAirMonitor()}"
                 android:textColor="#bbbbbb"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -66,6 +73,7 @@
                 android:paddingHorizontal="10dp"
                 android:paddingStart="20dp"
                 android:text="AIR CARE"
+                android:onClick="@{() -> vm.onActionAirCare()}"
                 android:drawablePadding="15dp"
                 android:textColor="#000000"
                 android:textSize="12sp"

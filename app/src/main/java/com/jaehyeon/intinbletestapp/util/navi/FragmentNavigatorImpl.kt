@@ -29,19 +29,7 @@ class FragmentNavigatorImpl(private val activity: FragmentActivity) : FragmentNa
 
     override fun init() {
         activity.supportFragmentManager.commit {
-            add(R.id.fragment_container, checkModuleFragment)
-            hide(checkModuleFragment)
-            add(R.id.fragment_container, choiceDeviceFragment)
-            hide(choiceDeviceFragment)
-            add(R.id.fragment_container, choiceModuleFragment)
-            hide(choiceModuleFragment)
-            add(R.id.fragment_container, resultFragment)
-            hide(resultFragment)
-            add(R.id.fragment_container, scanFragment)
-            hide(scanFragment)
-            add(R.id.fragment_container, standbyModuleFragment)
-            hide(standbyModuleFragment)
-            show(choiceDeviceFragment)
+            replace(R.id.fragment_container, scanFragment)
         }
     }
 
@@ -50,52 +38,52 @@ class FragmentNavigatorImpl(private val activity: FragmentActivity) : FragmentNa
         activity.supportFragmentManager.commit {
             when (screen) {
                 MainFragmentType.Scan -> {
-                    show(scanFragment)
-                    hide(checkModuleFragment)
-                    hide(choiceDeviceFragment)
-                    hide(choiceModuleFragment)
-                    hide(resultFragment)
-                    hide(standbyModuleFragment)
+                    replace(R.id.fragment_container, scanFragment)
+//                    hide(checkModuleFragment)
+//                    hide(choiceDeviceFragment)
+//                    hide(choiceModuleFragment)
+//                    hide(resultFragment)
+//                    hide(standbyModuleFragment)
                 }
                 MainFragmentType.CheckModule -> {
-                    show(checkModuleFragment)
-                    hide(scanFragment)
-                    hide(choiceDeviceFragment)
-                    hide(choiceModuleFragment)
-                    hide(resultFragment)
-                    hide(standbyModuleFragment)
+                    replace(R.id.fragment_container, checkModuleFragment)
+//                    hide(scanFragment)
+//                    hide(choiceDeviceFragment)
+//                    hide(choiceModuleFragment)
+//                    hide(resultFragment)
+//                    hide(standbyModuleFragment)
                 }
                 MainFragmentType.ChoiceDevice -> {
-                    show(choiceDeviceFragment)
-                    hide(checkModuleFragment)
-                    hide(scanFragment)
-                    hide(choiceModuleFragment)
-                    hide(resultFragment)
-                    hide(standbyModuleFragment)
+                    replace(R.id.fragment_container, choiceDeviceFragment)
+//                    hide(checkModuleFragment)
+//                    hide(scanFragment)
+//                    hide(choiceModuleFragment)
+//                    hide(resultFragment)
+//                    hide(standbyModuleFragment)
                 }
                 MainFragmentType.ChoiceModule -> {
-                    show(choiceModuleFragment)
-                    hide(checkModuleFragment)
-                    hide(choiceDeviceFragment)
-                    hide(scanFragment)
-                    hide(resultFragment)
-                    hide(standbyModuleFragment)
+                    replace(R.id.fragment_container, choiceModuleFragment)
+//                    hide(checkModuleFragment)
+//                    hide(choiceDeviceFragment)
+//                    hide(scanFragment)
+//                    hide(resultFragment)
+//                    hide(standbyModuleFragment)
                 }
                 MainFragmentType.Result -> {
-                    show(resultFragment)
-                    hide(checkModuleFragment)
-                    hide(choiceDeviceFragment)
-                    hide(choiceModuleFragment)
-                    hide(scanFragment)
-                    hide(standbyModuleFragment)
+                    replace(R.id.fragment_container, resultFragment)
+//                    hide(checkModuleFragment)
+//                    hide(choiceDeviceFragment)
+//                    hide(choiceModuleFragment)
+//                    hide(scanFragment)
+//                    hide(standbyModuleFragment)
                 }
                 MainFragmentType.StandbyModule -> {
-                    show(standbyModuleFragment)
-                    hide(checkModuleFragment)
-                    hide(choiceDeviceFragment)
-                    hide(choiceModuleFragment)
-                    hide(resultFragment)
-                    hide(scanFragment)
+                    replace(R.id.fragment_container, standbyModuleFragment)
+//                    hide(checkModuleFragment)
+//                    hide(choiceDeviceFragment)
+//                    hide(choiceModuleFragment)
+//                    hide(resultFragment)
+//                    hide(scanFragment)
 
                 }
             }
