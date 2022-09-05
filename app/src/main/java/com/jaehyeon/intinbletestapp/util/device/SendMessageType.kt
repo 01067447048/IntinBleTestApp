@@ -9,5 +9,6 @@ enum class SendMessageType(val message: String) {
     Start("MOD:START"),
     Stop("MOD:STOP"),
     Pause("MOD:PAUSE"),
-    Battery("BAT?")
+    Battery("BAT?"),
+    ReqSpiData("REQ:MOD_SPI_DATA")
 }

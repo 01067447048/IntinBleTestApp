@@ -4,13 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/bg_button_login.xml" value="0.315" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5575181159420289" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.40373831775700936" />
         <entry key="app/src/main/res/layout/fragment_check_module.xml" value="0.5575181159420289" />
         <entry key="app/src/main/res/layout/fragment_choice_device.xml" value="0.5575181159420289" />
         <entry key="app/src/main/res/layout/fragment_choice_module.xml" value="0.5575181159420289" />
         <entry key="app/src/main/res/layout/fragment_result.xml" value="0.4682971014492754" />
         <entry key="app/src/main/res/layout/fragment_scan.xml" value="0.4682971014492754" />
-        <entry key="app/src/main/res/layout/fragment_standby_module.xml" value="0.4682971014492754" />
+        <entry key="app/src/main/res/layout/fragment_standby_module.xml" value="0.43492769744160176" />
         <entry key="app/src/main/res/layout/include_app_bar.xml" value="0.5575181159420289" />
         <entry key="app/src/main/res/layout/include_button_type_a.xml" value="0.4682971014492754" />
         <entry key="app/src/main/res/layout/include_result.xml" value="0.4682971014492754" />

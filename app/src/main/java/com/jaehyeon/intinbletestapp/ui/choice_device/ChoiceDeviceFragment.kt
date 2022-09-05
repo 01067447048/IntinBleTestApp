@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -45,7 +46,7 @@ class ChoiceDeviceFragment: Fragment() {
                 }
                 ChoiceDeviceState.OnClickAirMonitor -> {
                     activityViewModel.device = DeviceType.AirMonitor
-                    Snackbar.make(requireContext(), binding.root, "사용불가.", Snackbar.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), "사용불가!", Toast.LENGTH_SHORT).show()
 //                    activityViewModel.runState(MainState.ChoiceModule)
                 }
             }

@@ -8,14 +8,11 @@ import android.bluetooth.BluetoothGattCharacteristic
 import android.bluetooth.BluetoothProfile
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
-import android.content.Context
 import android.util.Log
 import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.jaehyeon.intinbletestapp.util.ListLiveData
 import com.jaehyeon.intinbletestapp.util.ble.BleRepository
 import com.jaehyeon.intinbletestapp.util.device.DeviceType
 import com.jaehyeon.intinbletestapp.util.device.ModuleType
@@ -23,12 +20,8 @@ import com.jaehyeon.intinbletestapp.util.device.SendMessageType
 import com.jaehyeon.intinbletestapp.util.event.Event
 import com.jaehyeon.intinbletestapp.util.fragment.MainFragmentType
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
-import kotlin.experimental.and
 
 
 /**
@@ -58,30 +51,27 @@ class MainViewModel @Inject constructor(
     private val _connectedDevice = MutableLiveData<ScanResult>()
     val connectedDevice: LiveData<ScanResult> get() = _connectedDevice
 
-    private val _receiveRead = MutableLiveData<String>()
-    val receiveRead: LiveData<String> get() = _receiveRead
-
-    private val _receiveWrite = MutableLiveData<String>()
-    val receiveWrite: LiveData<String> get() = _receiveWrite
-
     private val _receiveChanged = MutableLiveData<String>()
     val receiveChanged: LiveData<String> get() = _receiveChanged
 
     var device = DeviceType.None
     var module = ModuleType.None
+    var currentScreen = MainFragmentType.Scan
 
     private val uuid = arrayOf(0xb8, 0x5c)
 
-    private val uuidTx = UUID.fromString("0000fff0-0000-1000-8000-00805f9b34fb")
     private val uuidRx = UUID.fromString("02f00000-0000-0000-0000-00000000fe00")
+    private val uuidTx = UUID.fromString("02f00000-0000-0000-0000-00000000ff01")
 
-//    private val uuidTx = arrayOf((0xb8).toByte(), (0x5c).toByte(), (0x49).toByte(), (0xd2).toByte(), (0x04).toByte(), (0xa3).toByte(),
-//    (0x40).toByte(), (0x71).toByte(), (0xa0).toByte(), (0xb5).toByte(), (0x35).toByte(), (0x85).toByte(), (0x3e).toByte(), (0xb0).toByte(), (0x83).toByte(), (0x07).toByte()).toByteArray()
-//
-//    private val uuidRx = arrayOf((0xba).toByte(), (0x5c).toByte(), (0x49).toByte(), (0xd2).toByte(), (0x04).toByte(), (0xa3).toByte(),
-//        (0x40).toByte(), (0x71).toByte(), (0xa0).toByte(), (0xb5).toByte(), (0x35).toByte(), (0x85).toByte(), (0x3e).toByte(), (0xb0).toByte(), (0x83).toByte(), (0x07).toByte()).toByteArray()
+    private val serviceUUID = UUID.fromString("0000FFF0-0000-1000-8000-00805F9B34FB")
+    private val notifyUUID = UUID.fromString("0783b03e-8535-b5a0-7140-a304d2495cb8")
+    private val writeUUID = UUID.fromString("0783b03e-8535-b5a0-7140-a304d2495cba")
+    
+//    private val serviceUUID = UUID.fromString("FFF0")
 
     private var bluetoothGatt: BluetoothGatt? = null
+    private var characteristicRead: BluetoothGattCharacteristic? = null
+    private var characteristicNoti: BluetoothGattCharacteristic? = null
     private var characteristic: BluetoothGattCharacteristic? = null
 
     fun resetDeviceModule() {
@@ -89,7 +79,7 @@ class MainViewModel @Inject constructor(
         module = ModuleType.None
     }
 
-    fun backState(currentScreen: MainFragmentType) {
+    fun backState() {
         when(currentScreen) {
             MainFragmentType.CheckModule -> runState(MainState.ChoiceModule)
             MainFragmentType.ChoiceDevice -> runState(MainState.Scan)
@@ -106,6 +96,7 @@ class MainViewModel @Inject constructor(
     @MainThread
     fun runState(state: MainState) {
         _ui.value = Event(state)
+        _receiveChanged.value = ""
     }
 
     /**
@@ -158,16 +149,10 @@ class MainViewModel @Inject constructor(
         override fun onServicesDiscovered(gatt: BluetoothGatt?, status: Int) {
             super.onServicesDiscovered(gatt, status)
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                val services = gatt?.services
-                services?.let {
-                    it.forEach { ser ->
-                        Log.e(TAG, "onServicesDiscovered: ${ser.uuid}", )
-                    }
-                }
-                val service = gatt?.getService(uuidRx)
-                characteristic = service?.getCharacteristic(uuidTx)
-                gatt?.setCharacteristicNotification(characteristic, true)
-                Log.d(TAG, "onServicesDiscovered")
+                val service = gatt?.getService(serviceUUID)
+                gatt?.setCharacteristicNotification(service?.getCharacteristic(notifyUUID), true)
+                characteristic = service?.getCharacteristic(writeUUID)
+                gatt?.writeCharacteristic(service?.getCharacteristic(writeUUID))
             }
         }
 
@@ -178,20 +163,9 @@ class MainViewModel @Inject constructor(
         ) {
             super.onCharacteristicRead(gatt, characteristic, status)
             Log.d(TAG, "onCharacteristicRead")
-            characteristic?.let {
-                _receiveRead.value = String(it.value)
-//                if (it != null) {
-//                    viewModelScope.launch (Dispatchers.IO) {
-//                        showAdapter(it.value)
-//                    }
-//
-//                }
-//                else {
-//                    viewModelScope.launch (Dispatchers.IO) {
-//                        showAdapter("errorCode : NULL".toByteArray())
-//                    }
-//                }
-            }
+//            characteristic?.let {
+//                _receiveRead.postValue(String(it.value))
+//            }
         }
 
         override fun onCharacteristicWrite(
@@ -201,9 +175,6 @@ class MainViewModel @Inject constructor(
         ) {
             super.onCharacteristicWrite(gatt, characteristic, status)
             Log.d(TAG, "onCharacteristicWrite")
-            characteristic?.let {
-               _receiveWrite.value = String(it.value)
-            }
         }
 
         override fun onCharacteristicChanged(
@@ -213,7 +184,8 @@ class MainViewModel @Inject constructor(
             super.onCharacteristicChanged(gatt, characteristic)
             Log.d(TAG, "onCharacteristicChanged")
             characteristic?.let {
-                _receiveChanged.value = String(it.value)
+                _receiveChanged.postValue(String(it.value))
+                Log.e(TAG, "onCharacteristicChanged: ${it.value}", )
             }
         }
     }

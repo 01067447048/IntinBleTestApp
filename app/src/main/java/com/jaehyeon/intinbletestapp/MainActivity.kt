@@ -42,12 +42,30 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         viewModel.ui.observe(this, EventObserver {
             when(it) {
-                MainState.CheckModule -> navi.navigateTo(MainFragmentType.CheckModule)
-                MainState.ChoiceDevice -> navi.navigateTo(MainFragmentType.ChoiceDevice)
-                MainState.ChoiceModule -> navi.navigateTo(MainFragmentType.ChoiceModule)
-                MainState.Result -> navi.navigateTo(MainFragmentType.Result)
-                MainState.Scan -> navi.navigateTo(MainFragmentType.Scan)
-                MainState.StandbyModule -> navi.navigateTo(MainFragmentType.StandbyModule)
+                MainState.CheckModule -> {
+                    navi.navigateTo(MainFragmentType.CheckModule)
+                    viewModel.currentScreen = MainFragmentType.CheckModule
+                }
+                MainState.ChoiceDevice -> {
+                    navi.navigateTo(MainFragmentType.ChoiceDevice)
+                    viewModel.currentScreen = MainFragmentType.ChoiceDevice
+                }
+                MainState.ChoiceModule -> {
+                    navi.navigateTo(MainFragmentType.ChoiceModule)
+                    viewModel.currentScreen = MainFragmentType.ChoiceModule
+                }
+                MainState.Result -> {
+                    navi.navigateTo(MainFragmentType.Result)
+                    viewModel.currentScreen = MainFragmentType.Result
+                }
+                MainState.Scan -> {
+                    navi.navigateTo(MainFragmentType.Scan)
+                    viewModel.currentScreen = MainFragmentType.Scan
+                }
+                MainState.StandbyModule -> {
+                    navi.navigateTo(MainFragmentType.StandbyModule)
+                    viewModel.currentScreen = MainFragmentType.StandbyModule
+                }
                 is MainState.BackState -> {
 
                 }
@@ -56,7 +74,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+//        super.onBackPressed()
+        if (viewModel.currentScreen == MainFragmentType.Scan)
+            super.onBackPressed()
+        else
+            viewModel.backState()
     }
 
 }

@@ -1,9 +1,11 @@
 package com.jaehyeon.intinbletestapp.ui.choice_module
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -13,6 +15,7 @@ import com.jaehyeon.intinbletestapp.MainState
 import com.jaehyeon.intinbletestapp.MainViewModel
 import com.jaehyeon.intinbletestapp.R
 import com.jaehyeon.intinbletestapp.databinding.FragmentChoiceModuleBinding
+import com.jaehyeon.intinbletestapp.ui.standby_module.StandbyState
 import com.jaehyeon.intinbletestapp.util.device.ModuleType
 import com.jaehyeon.intinbletestapp.util.device.SendMessageType
 import com.jaehyeon.intinbletestapp.util.event.EventObserver
@@ -49,20 +52,13 @@ class ChoiceModuleFragment: Fragment() {
                 ChoiceModuleState.OnClickSpray -> activityViewModel.module = ModuleType.Spray
                 ChoiceModuleState.OnClickSuction -> activityViewModel.module = ModuleType.Suction
             }
+
             activityViewModel.sendMessage(SendMessageType.Mod)
-//            activityViewModel.runState(MainState.CheckModule)
         })
 
-        activityViewModel.receiveRead.observe(viewLifecycleOwner) {
-            Snackbar.make(requireContext(), binding.root, "Read: $it", Snackbar.LENGTH_LONG)
-        }
-
-        activityViewModel.receiveWrite.observe(viewLifecycleOwner) {
-            Snackbar.make(requireContext(), binding.root, "Write: $it", Snackbar.LENGTH_LONG)
-        }
-
         activityViewModel.receiveChanged.observe(viewLifecycleOwner) {
-            Snackbar.make(requireContext(), binding.root, "Chagned: $it", Snackbar.LENGTH_LONG)
+            Log.e(javaClass.simpleName, "onViewCreated: $it", )
+            if (it == "Recv Data From APP") activityViewModel.runState(MainState.StandbyModule)
         }
     }
 

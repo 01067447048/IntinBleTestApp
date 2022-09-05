@@ -3,6 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="avm"
+            type="com.jaehyeon.intinbletestapp.MainViewModel" />
+
+        <variable
+            name="vm"
+            type="com.jaehyeon.intinbletestapp.ui.standby_module.StandbyViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,6 +27,7 @@
             android:textSize="36sp"
             android:textStyle="bold"
             android:textColor="#000"
+            app:setModuleType="@{avm.module}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,12 +40,13 @@
             android:textColor="#000000"
             android:textSize="40sp"
             android:textStyle="bold"
+            app:setTimer="@{vm.sec}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/count_start_btn"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="100dp"
@@ -42,6 +54,8 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@mipmap/a2404"
+            android:onClick="@{() -> vm.onClickButton()}"
+            android:onLongClick="@{(view) -> vm.onLongClickButton()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

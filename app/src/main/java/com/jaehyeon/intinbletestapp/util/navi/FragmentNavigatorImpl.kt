@@ -29,7 +29,8 @@ class FragmentNavigatorImpl(private val activity: FragmentActivity) : FragmentNa
 
     override fun init() {
         activity.supportFragmentManager.commit {
-            replace(R.id.fragment_container, scanFragment)
+//            replace(R.id.fragment_container, scanFragment)
+//            replace(R.id.fragment_container, standbyModuleFragment)
         }
     }
 
