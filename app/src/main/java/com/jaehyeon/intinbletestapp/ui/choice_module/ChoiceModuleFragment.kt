@@ -46,19 +46,26 @@ class ChoiceModuleFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.action.observe(viewLifecycleOwner, EventObserver {
             when(it) {
-                ChoiceModuleState.OnClickLED -> activityViewModel.module = ModuleType.LED
-                ChoiceModuleState.OnClickNeb -> activityViewModel.module = ModuleType.Nebulizer
-                ChoiceModuleState.OnClickSpirometry -> activityViewModel.module = ModuleType.Spirometery
-                ChoiceModuleState.OnClickSpray -> activityViewModel.module = ModuleType.Spray
-                ChoiceModuleState.OnClickSuction -> activityViewModel.module = ModuleType.Suction
+                ChoiceModuleState.OnClickSpirometry -> {
+                    activityViewModel.module = ModuleType.Spirometery
+                    activityViewModel.sendMessage(SendMessageType.Mod)
+                }
+                else -> {
+                    Toast.makeText(requireContext(), "사용 불가!", Toast.LENGTH_SHORT).show()
+                }
+                // 다른 모듈도 사용 할 수 있을 변경 되어야 함.
+//                ChoiceModuleState.OnClickLED -> activityViewModel.module = ModuleType.LED
+//                ChoiceModuleState.OnClickNeb -> activityViewModel.module = ModuleType.Nebulizer
+//
+//                ChoiceModuleState.OnClickSpray -> activityViewModel.module = ModuleType.Spray
+//                ChoiceModuleState.OnClickSuction -> activityViewModel.module = ModuleType.Suction
             }
-
-            activityViewModel.sendMessage(SendMessageType.Mod)
+//            activityViewModel.sendMessage(SendMessageType.Mod)
         })
 
         activityViewModel.receiveChanged.observe(viewLifecycleOwner) {
             Log.e(javaClass.simpleName, "onViewCreated: $it", )
-            if (it == "Recv Data From APP") activityViewModel.runState(MainState.StandbyModule)
+            if (it == "Recv Data From APP") activityViewModel.runState(MainState.CheckModule)
         }
     }
 

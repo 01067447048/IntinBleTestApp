@@ -18,6 +18,27 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
+        <LinearLayout
+            android:id="@+id/my_toolbar_1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/my_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:src="@mipmap/a1814" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
@@ -27,6 +48,7 @@
             android:textSize="36sp"
             android:textStyle="bold"
             android:textColor="#000"
+            android:visibility="gone"
             app:setModuleType="@{avm.module}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

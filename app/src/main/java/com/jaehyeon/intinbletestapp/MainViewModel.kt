@@ -103,6 +103,7 @@ class MainViewModel @Inject constructor(
      * 비동기적으로 처리 할 때.
      */
     fun postState(state: MainState) {
+        _receiveChanged.value = ""
         _ui.postValue(Event(state))
     }
 

@@ -6,6 +6,14 @@
         <variable
             name="avm"
             type="com.jaehyeon.intinbletestapp.MainViewModel" />
+
+        <variable
+            name="module"
+            type="com.jaehyeon.intinbletestapp.util.device.ModuleType" />
+
+        <variable
+            name="status"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,11 +25,12 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:setCheckModule="@{module}"
+            app:setCheckModuleStatus="@{status}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setCheckImage="@{avm.module}"
             app:srcCompat="@drawable/a2491" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

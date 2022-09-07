@@ -8,11 +8,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.jaehyeon.intinbletestapp.MainState
 import com.jaehyeon.intinbletestapp.MainViewModel
 import com.jaehyeon.intinbletestapp.R
 import com.jaehyeon.intinbletestapp.databinding.FragmentCheckModuleBinding
 import com.jaehyeon.intinbletestapp.util.device.SendMessageType
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 /**
  * Created by Jaehyeon on 2022/08/26.
@@ -30,13 +33,28 @@ class CheckModuleFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_check_module, container, false)
-        binding.avm = activityViewModel
+        binding.module = activityViewModel.module
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activityViewModel.sendMessage(SendMessageType.Mod)
+        activityViewModel.receiveChanged.observe(viewLifecycleOwner) {
+            if (it == "Recv Data From APP") {
+                viewModel.changeStatus(true)
+            }
+        }
+
+        viewModel.status.observe(viewLifecycleOwner) {
+            binding.status = it
+        }
+
+        // 메시지 루틴이 생긴다면 삭제되어야 할 코드.
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            activityViewModel.sendMessage(SendMessageType.Battery)
+            delay(2_000)
+            activityViewModel.postState(MainState.StandbyModule)
+        }
     }
 
     companion object {
