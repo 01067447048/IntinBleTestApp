@@ -16,6 +16,13 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+        buildConfigField "String", "SERVICE_UUID", "\"${properties.getProperty("SERVICE_UUID")}\""
+        buildConfigField "String", "NOTIFY_UUID", "\"${properties.getProperty("NOTIFY_UUID")}\""
+        buildConfigField "String", "WRITE_UUID", "\"${properties.getProperty("WRITE_UUID")}\""
     }
 
     buildTypes {

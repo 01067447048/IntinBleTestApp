@@ -71,7 +71,7 @@ class FragmentNavigatorImpl(private val activity: FragmentActivity) : FragmentNa
 //                    hide(standbyModuleFragment)
                 }
                 MainFragmentType.Result -> {
-                    replace(R.id.fragment_container, resultFragment)
+                    replace(R.id.fragment_container, ResultFragment())
 //                    hide(checkModuleFragment)
 //                    hide(choiceDeviceFragment)
 //                    hide(choiceModuleFragment)

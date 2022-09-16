@@ -119,5 +119,9 @@ class StandbyViewModel @Inject constructor(
 
     }
 
+    fun init() {
+
+    }
+
 
 }

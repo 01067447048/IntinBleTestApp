@@ -58,20 +58,15 @@ class MainViewModel @Inject constructor(
     var module = ModuleType.None
     var currentScreen = MainFragmentType.Scan
 
-    private val uuid = arrayOf(0xb8, 0x5c)
+//    private val serviceUUID = UUID.fromString("0000FFF0-0000-1000-8000-00805F9B34FB")
+//    private val notifyUUID = UUID.fromString("0783b03e-8535-b5a0-7140-a304d2495cb8")
+//    private val writeUUID = UUID.fromString("0783b03e-8535-b5a0-7140-a304d2495cba")
 
-    private val uuidRx = UUID.fromString("02f00000-0000-0000-0000-00000000fe00")
-    private val uuidTx = UUID.fromString("02f00000-0000-0000-0000-00000000ff01")
-
-    private val serviceUUID = UUID.fromString("0000FFF0-0000-1000-8000-00805F9B34FB")
-    private val notifyUUID = UUID.fromString("0783b03e-8535-b5a0-7140-a304d2495cb8")
-    private val writeUUID = UUID.fromString("0783b03e-8535-b5a0-7140-a304d2495cba")
-    
-//    private val serviceUUID = UUID.fromString("FFF0")
+    private val serviceUUID = BuildConfig.SERVICE_UUID
+    private val notifyUUID = BuildConfig.NOTIFY_UUID
+    private val writeUUID = BuildConfig.WRITE_UUID
 
     private var bluetoothGatt: BluetoothGatt? = null
-    private var characteristicRead: BluetoothGattCharacteristic? = null
-    private var characteristicNoti: BluetoothGattCharacteristic? = null
     private var characteristic: BluetoothGattCharacteristic? = null
 
     fun resetDeviceModule() {
@@ -150,10 +145,10 @@ class MainViewModel @Inject constructor(
         override fun onServicesDiscovered(gatt: BluetoothGatt?, status: Int) {
             super.onServicesDiscovered(gatt, status)
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                val service = gatt?.getService(serviceUUID)
-                gatt?.setCharacteristicNotification(service?.getCharacteristic(notifyUUID), true)
-                characteristic = service?.getCharacteristic(writeUUID)
-                gatt?.writeCharacteristic(service?.getCharacteristic(writeUUID))
+                val service = gatt?.getService(UUID.fromString(serviceUUID))
+                gatt?.setCharacteristicNotification(service?.getCharacteristic(UUID.fromString(notifyUUID)), true)
+                characteristic = service?.getCharacteristic(UUID.fromString(writeUUID))
+                gatt?.writeCharacteristic(service?.getCharacteristic(UUID.fromString(writeUUID)))
             }
         }
 
