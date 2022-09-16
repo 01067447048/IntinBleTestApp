@@ -58,10 +58,6 @@ class MainViewModel @Inject constructor(
     var module = ModuleType.None
     var currentScreen = MainFragmentType.Scan
 
-//    private val serviceUUID = UUID.fromString("0000FFF0-0000-1000-8000-00805F9B34FB")
-//    private val notifyUUID = UUID.fromString("0783b03e-8535-b5a0-7140-a304d2495cb8")
-//    private val writeUUID = UUID.fromString("0783b03e-8535-b5a0-7140-a304d2495cba")
-
     private val serviceUUID = BuildConfig.SERVICE_UUID
     private val notifyUUID = BuildConfig.NOTIFY_UUID
     private val writeUUID = BuildConfig.WRITE_UUID
